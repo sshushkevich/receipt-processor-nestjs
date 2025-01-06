@@ -1,0 +1,2 @@
+export const DB_CONNECTION = 'DATABASE_CONNECTION';
+export const RECEIPT_MODEL = 'RECEIPT_MODEL';
