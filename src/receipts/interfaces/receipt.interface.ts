@@ -1,6 +1,4 @@
-import { Document } from 'mongoose';
-
-export interface Receipt extends Document {
+export interface Receipt {
   retailer: string;
   purchaseDate: Date;
   purchaseTime: string;
