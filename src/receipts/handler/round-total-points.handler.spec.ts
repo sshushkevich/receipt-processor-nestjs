@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Receipt } from '../interfaces/receipt.interface';
-import { QuarterTotalPointsHandler } from './quarter-total-points.handler';
+import { RoundTotalPointsHandler } from './round-total-points.handler';
 
-describe('QuarterTotalPointsHandler', () => {
-  let handler: QuarterTotalPointsHandler;
+describe('RoundTotalPointsHandler', () => {
+  let handler: RoundTotalPointsHandler;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [QuarterTotalPointsHandler],
+      providers: [RoundTotalPointsHandler],
     }).compile();
 
-    handler = module.get<QuarterTotalPointsHandler>(QuarterTotalPointsHandler);
+    handler = module.get<RoundTotalPointsHandler>(RoundTotalPointsHandler);
   });
 
   it('should be defined', () => {
@@ -19,11 +19,7 @@ describe('QuarterTotalPointsHandler', () => {
 
   it.each([
     [35.35, 0],
-    [9.0, 25],
-    [9.25, 25],
-    [9.5, 25],
-    [9.75, 25],
-    [9.8, 0],
+    [9.0, 50],
   ])(
     'should calculate points based on total value',
     (total, expectedPoints) => {

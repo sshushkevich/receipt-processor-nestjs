@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Receipt } from '../interfaces/receipt.interface';
-import { QuarterTotalPointsHandler } from './quarter-total-points.handler';
+import { OddDayPointsHandler } from './odd-day-points.handler';
 
-describe('QuarterTotalPointsHandler', () => {
-  let handler: QuarterTotalPointsHandler;
+describe('OddDayPointsHandler', () => {
+  let handler: OddDayPointsHandler;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [QuarterTotalPointsHandler],
+      providers: [OddDayPointsHandler],
     }).compile();
 
-    handler = module.get<QuarterTotalPointsHandler>(QuarterTotalPointsHandler);
+    handler = module.get<OddDayPointsHandler>(OddDayPointsHandler);
   });
 
   it('should be defined', () => {
@@ -18,20 +18,18 @@ describe('QuarterTotalPointsHandler', () => {
   });
 
   it.each([
-    [35.35, 0],
-    [9.0, 25],
-    [9.25, 25],
-    [9.5, 25],
-    [9.75, 25],
-    [9.8, 0],
+    ['2022-01-01', 6],
+    ['2022-01-02', 0],
+    ['2022-01-03', 6],
+    ['2022-01-04', 0],
   ])(
-    'should calculate points based on total value',
-    (total, expectedPoints) => {
+    'should calculate points based on purchase date',
+    (dateStr, expectedPoints) => {
       const receipt: Receipt = {
         retailer: 'Target',
-        purchaseDate: new Date(),
+        purchaseDate: new Date(dateStr),
         purchaseTime: '11:34',
-        total,
+        total: 33.45,
         items: [{ shortDescription: 'desc', price: 33.45 }],
       };
 
