@@ -5,11 +5,14 @@ import {
   Body,
   Param,
   NotFoundException,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ReceiptsService } from './receipts.service';
 import { CreateReceiptDto } from './dto/create-receipt.dto';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('receipts')
+@UseInterceptors(CacheInterceptor)
 export class ReceiptsController {
   constructor(private readonly receiptsService: ReceiptsService) {}
 
