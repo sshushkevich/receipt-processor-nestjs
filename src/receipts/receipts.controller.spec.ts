@@ -21,6 +21,10 @@ describe('ReceiptsController', () => {
           provide: ReceiptsService,
           useValue: mockReceiptService,
         },
+        {
+          provide: 'CACHE_MANAGER',
+          useValue: {},
+        },
       ],
     }).compile();
 
