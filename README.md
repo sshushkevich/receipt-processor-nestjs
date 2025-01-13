@@ -11,6 +11,7 @@ It's similar to the project https://github.com/shushkevich/receipt-processor , b
 ## Highlights
 - New rules can be added without changing of underlying service
 - Points calculation endpoint is cached
+- Input validation
 - Added tests
 
 ## Installation
