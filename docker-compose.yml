@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: receipt-processor-nestjs
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/receipt-processor
+      - PORT=3001
+    networks:
+      - nest-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - nest-network
+
+networks:
+  nest-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

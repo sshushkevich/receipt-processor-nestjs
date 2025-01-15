@@ -5,6 +5,6 @@ export const databaseProviders = [
   {
     provide: DB_CONNECTION,
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect('mongodb://localhost/receipt-processor'),
+      mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/receipt-processor'),
   },
 ];
